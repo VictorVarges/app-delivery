@@ -1,29 +1,29 @@
 const ProductsModel = (sequelize, DataTypes) => {
-    const products = sequelize.define('Products', {
-    id: {
+  const products = sequelize.define('Products', {
+  id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true,
     allowNull: false,
-    },
-    name: {
+  },
+  name: {
     type: DataTypes.STRING,
     allowNull: false,
-    },
-    price: {
+  },
+  price: {
     type: DataTypes.DECIMAL(4, 2),
     allowNull: false,
-    },
-    urlImage: {
+  },
+  urlImage: {
     type: DataTypes.STRING,
-    }
-    }, {
+  }
+  }, {
     timestamps: false,
     tableName: 'products',
     undescored: true,
-    });
-    
-    return products;
-    };
-    
-    module.exports = ProductsModel; 
+  });
+
+  return products;
+};
+
+module.exports = ProductsModel; 
