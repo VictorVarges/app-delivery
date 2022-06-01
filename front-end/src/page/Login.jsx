@@ -1,7 +1,6 @@
 import React from 'react';
 
 export default function Login() {
-
   return (
     <div>
       <form>
@@ -23,8 +22,18 @@ export default function Login() {
             id="password"
           />
         </label>
-        <button type="button" data-testid="common_login__button-login">Login</button>
-        <button type="button" data-testid="common_login__button-register">Ainda não tenho conta</button>
+        <button
+          type="button"
+          data-testid="common_login__button-login"
+        >
+          Login
+        </button>
+        <button
+          type="button"
+          data-testid="common_login__button-register"
+        >
+          Ainda não tenho conta
+        </button>
       </form>
       <div data-testid="common_login__element-invalid-email">Elemento oculto. (Mensagens de erro)</div>
     </div>
