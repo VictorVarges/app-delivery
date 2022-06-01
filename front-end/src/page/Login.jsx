@@ -35,7 +35,11 @@ export default function Login() {
           Ainda não tenho conta
         </button>
       </form>
-      <div data-testid="common_login__element-invalid-email">Elemento oculto. (Mensagens de erro)</div>
+      <div
+        data-testid="common_login__element-invalid-email"
+      >
+        Elemento oculto. (Mensagens de erro)
+      </div>
     </div>
   );
 }
