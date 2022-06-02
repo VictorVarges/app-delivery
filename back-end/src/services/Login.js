@@ -1,7 +1,8 @@
-const { users } = require('../database/models');
+const { Users } = require('../database/models');
 
-const loginUser = async (email, password) => {
-  const result = await users.findOne({ where: { email, password } });
+const loginUser = async (email) => {
+  console.log(email, 'log email');
+  const result = await Users.findOne({ where: { email } });
 
   if (!result) return null;
 

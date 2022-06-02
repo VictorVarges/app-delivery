@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import './login.css';
 import { datatest } from '../util/datatest';
-import loginUser from '../server/loginFetch';
 
 export default function Login() {
   const [inpLogin, setInpLogin] = useState('');
   const [pass, setPass] = useState('');
+  const [divDisplay, setDivDisplay] = useState('display');
 
   const navigate = useNavigate();
 
@@ -17,8 +19,18 @@ export default function Login() {
     return !(regexEmail.test(inpLogin) && pass.length >= MIN_NUMBER);
   };
 
-  const btnLogin = () => {
-    loginUser(inpLogin, pass);
+  const loginUser = async (email, password) => {
+    try {
+      const result = await axios.post('http://localhost:3001/login', {
+        email,
+        password,
+      });
+
+      console.log(result, 'log result');
+    } catch (error) {
+      setDivDisplay('noDisplay');
+      console.log(error);
+    }
   };
 
   const btnNewRegister = () => {
@@ -53,7 +65,7 @@ export default function Login() {
           type="button"
           data-testid={ datatest[3] }
           disabled={ validLogin() }
-          onClick={ () => btnLogin() }
+          onClick={ () => loginUser(inpLogin, pass) }
         >
           Login
         </button>
@@ -66,6 +78,7 @@ export default function Login() {
         </button>
       </form>
       <div
+        className={ divDisplay }
         data-testid={ datatest[5] }
       >
         Elemento oculto. (Mensagens de erro)
