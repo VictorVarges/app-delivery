@@ -1,18 +1,16 @@
-import { use } from 'chai';
-import { Route } from 'react-router-dom';
-import { Switch, Redirect } from 'react-router-dom';
+import React from 'react';
+import { Navigate, Route, BrowserRouter, Routes } from 'react-router-dom';
 import Login from '../page/Login';
 
-function Routs () {
-  return(
-    <Switch>
-      <Route exact path="/">
-       <Redirect to="/login" />
-      </Route> 
-      <Route exact path='/login' component={Login} />
-
-    </Switch>
-  );  
+function Routs() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={ <Navigate to="/login" /> } />
+        <Route path="/login" element={ <Login /> } />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default Routs;
