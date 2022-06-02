@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './login.css';
-import { datatest } from '../util/datatest';
+import datatest from '../util/datatest';
 
 export default function Login() {
   const [inpLogin, setInpLogin] = useState('');

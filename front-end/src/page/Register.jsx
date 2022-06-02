@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { datatest } from '../util/datatest';
+import datatest from '../util/datatest';
 
 const MIN_NUMBER = 6;
 const MIN_NAME = 12;
