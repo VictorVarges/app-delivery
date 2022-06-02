@@ -1,6 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 export default function Login() {
+  const [inpLogin, setInpLogin] = useState('');
+  const [pass, setPass] = useState('');
+
+  const validLogin = () => {
+    const regexEmail = (
+      /^[a-z0-9._]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i
+    );
+    const MIN_NUMBER = 6;
+    return !(regexEmail.test(inpLogin) && pass.length >= MIN_NUMBER);
+  };
+
   return (
     <div>
       <form>
@@ -11,6 +22,7 @@ export default function Login() {
             type="email"
             data-testid="common_login__input-email"
             id="email"
+            onChange={ (e) => { setInpLogin(e.target.value); } }
           />
         </label>
         <label htmlFor="password">
@@ -20,11 +32,13 @@ export default function Login() {
             type="password"
             data-testid="common_login__input-password"
             id="password"
+            onChange={ (e) => { setPass(e.target.value); } }
           />
         </label>
         <button
           type="button"
           data-testid="common_login__button-login"
+          disabled={ validLogin() }
         >
           Login
         </button>
