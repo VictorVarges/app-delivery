@@ -16,7 +16,7 @@ export default function Register() {
     return !(
       regexEmail.test(inpEmail)
       && inpPass.length >= MIN_NUMBER
-      && inpName >= MIN_NAME
+      && inpName.length >= MIN_NAME
     );
   };
 
