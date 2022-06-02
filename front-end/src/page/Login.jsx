@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { datatest } from '../util/datatest';
 import loginUser from '../server/loginFetch';
-
 
 export default function Login() {
   const [inpLogin, setInpLogin] = useState('');
   const [pass, setPass] = useState('');
+
+  const navigate = useNavigate();
 
   const validLogin = () => {
     const regexEmail = (
@@ -18,6 +21,11 @@ export default function Login() {
     loginUser(inpLogin, pass);
   };
 
+  const btnNewRegister = () => {
+    const redirectToRegister = '/register';
+    navigate(redirectToRegister);
+  };
+
   return (
     <div>
       <form>
@@ -26,7 +34,7 @@ export default function Login() {
           <input
             name="email"
             type="email"
-            data-testid="common_login__input-email"
+            data-testid={ datatest[1] }
             id="email"
             onChange={ (e) => { setInpLogin(e.target.value); } }
           />
@@ -36,14 +44,14 @@ export default function Login() {
           <input
             name="password"
             type="password"
-            data-testid="common_login__input-password"
+            data-testid={ datatest[2] }
             id="password"
             onChange={ (e) => { setPass(e.target.value); } }
           />
         </label>
         <button
           type="button"
-          data-testid="common_login__button-login"
+          data-testid={ datatest[3] }
           disabled={ validLogin() }
           onClick={ () => btnLogin() }
         >
@@ -51,13 +59,14 @@ export default function Login() {
         </button>
         <button
           type="button"
-          data-testid="common_login__button-register"
+          data-testid={ datatest[4] }
+          onClick={ () => btnNewRegister() }
         >
           Ainda não tenho conta
         </button>
       </form>
       <div
-        data-testid="common_login__element-invalid-email"
+        data-testid={ datatest[5] }
       >
         Elemento oculto. (Mensagens de erro)
       </div>
