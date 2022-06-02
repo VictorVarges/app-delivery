@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import loginUser from '../server/loginFetch';
+import axios from 'axios';
+import './login.css';
 
 export default function Login() {
   const [inpLogin, setInpLogin] = useState('');
   const [pass, setPass] = useState('');
+  const [divDisplay, setDivDisplay] = useState('display');
 
   const validLogin = () => {
     const regexEmail = (
@@ -13,8 +15,18 @@ export default function Login() {
     return !(regexEmail.test(inpLogin) && pass.length >= MIN_NUMBER);
   };
 
-  const btnLogin = () => {
-    loginUser(inpLogin, pass);
+  const loginUser = async (email, password) => {
+    try {
+      const result = await axios.post('http://localhost:3001/login', {
+        email,
+        password,
+      });
+
+      console.log(result, 'log result');
+    } catch (error) {
+      setDivDisplay('noDisplay');
+      console.log(error);
+    }
   };
 
   return (
@@ -44,7 +56,7 @@ export default function Login() {
           type="button"
           data-testid="common_login__button-login"
           disabled={ validLogin() }
-          onClick={ () => btnLogin() }
+          onClick={ () => loginUser(inpLogin, pass) }
         >
           Login
         </button>
@@ -56,6 +68,7 @@ export default function Login() {
         </button>
       </form>
       <div
+        className={ divDisplay }
         data-testid="common_login__element-invalid-email"
       >
         Elemento oculto. (Mensagens de erro)

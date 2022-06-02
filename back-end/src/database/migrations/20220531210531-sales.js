@@ -1,8 +1,7 @@
 'use strict';
 
 module.exports = {
-  async up (queryInterface, Sequelize) {
-   
+  up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('sales', {
       id: {
         allowNull: false,
@@ -13,7 +12,7 @@ module.exports = {
       userId: {
         allowNull: false,
         type: Sequelize.INTEGER,
-        references:{
+        references: {
           model: 'users',
           key: 'id',
         },
@@ -24,7 +23,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER,
         unique: true,
-        references:{
+        references: {
           model: 'users',
           key: 'id',
         },
@@ -33,7 +32,7 @@ module.exports = {
       },
       totalPrice: {
         allowNull: false,
-        type: Sequelize.DECIMAL(9,2),
+        type: Sequelize.DECIMAL(9, 2),
       },
       deliveryAddress: {
         allowNull: false,
@@ -43,7 +42,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING,
       },
-      saleDate:{
+      saleDate: {
         allowNull: false,
         type: Sequelize.DATE,
       },
@@ -51,11 +50,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING,
       },
-            
     });
   },
 
-  async down (queryInterface, Sequelize) {
-   await queryInterface.dropTable('sales');
+  down: async (queryInterface, _Sequelize) => {
+    await queryInterface.dropTable('sales');
   }
 };
