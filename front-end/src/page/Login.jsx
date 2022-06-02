@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './login.css';
+import { datatest } from '../util/datatest';
 
 export default function Login() {
   const [inpLogin, setInpLogin] = useState('');
@@ -37,7 +38,7 @@ export default function Login() {
           <input
             name="email"
             type="email"
-            data-testid="common_login__input-email"
+            data-testid={ datatest[1] }
             id="email"
             onChange={ (e) => { setInpLogin(e.target.value); } }
           />
@@ -47,14 +48,14 @@ export default function Login() {
           <input
             name="password"
             type="password"
-            data-testid="common_login__input-password"
+            data-testid={ datatest[2] }
             id="password"
             onChange={ (e) => { setPass(e.target.value); } }
           />
         </label>
         <button
           type="button"
-          data-testid="common_login__button-login"
+          data-testid={ datatest[3] }
           disabled={ validLogin() }
           onClick={ () => loginUser(inpLogin, pass) }
         >
@@ -62,14 +63,14 @@ export default function Login() {
         </button>
         <button
           type="button"
-          data-testid="common_login__button-register"
+          data-testid={ datatest[4] }
         >
           Ainda não tenho conta
         </button>
       </form>
       <div
         className={ divDisplay }
-        data-testid="common_login__element-invalid-email"
+        data-testid={ datatest[5] }
       >
         Elemento oculto. (Mensagens de erro)
       </div>
