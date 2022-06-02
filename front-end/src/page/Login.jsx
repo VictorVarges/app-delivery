@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import loginUser from '../server/loginFetch';
+
+const navigate = useNavigate();
 
 export default function Login() {
   const [inpLogin, setInpLogin] = useState('');
@@ -16,6 +19,11 @@ export default function Login() {
   const btnLogin = () => {
     loginUser(inpLogin, pass);
   };
+
+  const btnNewRegister = () => {
+    const redirectToRegister = '/register';
+    navigate(redirectToRegister);
+  }
 
   return (
     <div>
@@ -51,6 +59,7 @@ export default function Login() {
         <button
           type="button"
           data-testid="common_login__button-register"
+          onClick={ () => btnNewRegister() }
         >
           Ainda não tenho conta
         </button>
