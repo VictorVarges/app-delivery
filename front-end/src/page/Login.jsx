@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import loginUser from '../server/loginFetch';
 
 export default function Login() {
   const [inpLogin, setInpLogin] = useState('');
@@ -10,6 +11,10 @@ export default function Login() {
     );
     const MIN_NUMBER = 6;
     return !(regexEmail.test(inpLogin) && pass.length >= MIN_NUMBER);
+  };
+
+  const btnLogin = () => {
+    loginUser(inpLogin, pass);
   };
 
   return (
@@ -39,6 +44,7 @@ export default function Login() {
           type="button"
           data-testid="common_login__button-login"
           disabled={ validLogin() }
+          onClick={ () => btnLogin() }
         >
           Login
         </button>
