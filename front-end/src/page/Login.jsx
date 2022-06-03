@@ -10,8 +10,6 @@ export default function Login() {
   const [divDisplay, setDivDisplay] = useState('display');
   const navigate = useNavigate();
 
-  const navigate = useNavigate();
-
   const validLogin = () => {
     const regexEmail = (
       /^[a-z0-9._]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i
