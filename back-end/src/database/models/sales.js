@@ -18,11 +18,11 @@ const SalesModel = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    delieveryAddres: {
+    deliveryAddress: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    delieveryNumber: {
+    deliveryNumber: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },

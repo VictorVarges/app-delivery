@@ -59,7 +59,7 @@ module.exports = {
         price: 3.49,
         urlImage: 'http://localhost:3001/images/stella_artois_275ml.jpg',
       },
-      ], {});
+      ]);
   },
 
   async down(queryInterface, _Sequelize) {
