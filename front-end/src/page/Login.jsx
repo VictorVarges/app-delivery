@@ -10,6 +10,8 @@ export default function Login() {
   const [divDisplay, setDivDisplay] = useState('display');
   const navigate = useNavigate();
 
+  const navigate = useNavigate();
+
   const validLogin = () => {
     const regexEmail = (
       /^[a-z0-9._]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i
@@ -31,6 +33,11 @@ export default function Login() {
       setDivDisplay('noDisplay');
       console.log(error);
     }
+  };
+
+  const btnNewRegister = () => {
+    const redirectToRegister = '/register';
+    navigate(redirectToRegister);
   };
 
   return (
@@ -67,6 +74,7 @@ export default function Login() {
         <button
           type="button"
           data-testid={ datatest[4] }
+          onClick={ () => btnNewRegister() }
         >
           Ainda não tenho conta
         </button>
