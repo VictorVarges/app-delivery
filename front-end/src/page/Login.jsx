@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './login.css';
-import { datatest } from '../util/datatest';
+import datatest from '../util/datatest';
 
 export default function Login() {
   const [inpLogin, setInpLogin] = useState('');
   const [pass, setPass] = useState('');
   const [divDisplay, setDivDisplay] = useState('display');
+
+  const navigate = useNavigate();
 
   const validLogin = () => {
     const regexEmail = (
@@ -28,6 +31,11 @@ export default function Login() {
       setDivDisplay('noDisplay');
       console.log(error);
     }
+  };
+
+  const btnNewRegister = () => {
+    const redirectToRegister = '/register';
+    navigate(redirectToRegister);
   };
 
   return (
@@ -64,6 +72,7 @@ export default function Login() {
         <button
           type="button"
           data-testid={ datatest[4] }
+          onClick={ () => btnNewRegister() }
         >
           Ainda não tenho conta
         </button>
