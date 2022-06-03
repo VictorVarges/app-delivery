@@ -1,4 +1,4 @@
-export const datatest = {
+const datatest = {
   1: 'common_login__input-email',
   2: 'common_login__input-password',
   3: 'common_login__button-login',
@@ -73,3 +73,5 @@ export const datatest = {
   72: 'admin_manage__element-user-table-role-',
   73: 'admin_manage__element-user-table-remove-',
 };
+
+export default datatest;

@@ -1,8 +1,10 @@
+const md5 = require('md5');
 const { Users } = require('../database/models');
 
-const loginUser = async (email) => {
-  console.log(email, 'log email');
-  const result = await Users.findOne({ where: { email } });
+const loginUser = async (email, password) => {
+  const validPassword = md5(password);
+
+  const result = await Users.findOne({ where: { email, password: validPassword } });
 
   if (!result) return null;
 

@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './login.css';
-import { datatest } from '../util/datatest';
+import datatest from '../util/datatest';
 
 export default function Login() {
   const [inpLogin, setInpLogin] = useState('');
   const [pass, setPass] = useState('');
   const [divDisplay, setDivDisplay] = useState('display');
+  const navigate = useNavigate();
 
   const validLogin = () => {
     const regexEmail = (
@@ -22,8 +24,9 @@ export default function Login() {
         email,
         password,
       });
+      const { role } = result.data;
 
-      console.log(result, 'log result');
+      navigate(`/${role}/products`);
     } catch (error) {
       setDivDisplay('noDisplay');
       console.log(error);
