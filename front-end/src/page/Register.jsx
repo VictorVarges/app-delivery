@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import datatest from '../util/datatest';
 
 const MIN_NUMBER = 6;
@@ -8,6 +10,7 @@ export default function Register() {
   const [inpName, setInpName] = useState('');
   const [inpEmail, setInpEmail] = useState('');
   const [inpPass, setInpPass] = useState('');
+  const navigate = useNavigate();
 
   const validRegister = () => {
     const regexEmail = (
@@ -18,6 +21,23 @@ export default function Register() {
       && inpPass.length >= MIN_NUMBER
       && inpName.length >= MIN_NAME
     );
+  };
+
+  const callBackBackend = async (userEmail, userPassword, userName) => {
+    try {
+      const result = await axios.post('http://localhost:3001/register', {
+        userEmail,
+        userPassword,
+        userName,
+      });
+      const { email, password, name } = result.data;
+      const user = { email, password, name };
+      console.log(user);
+      if (result) navigate('/customer/products');
+      return user;
+    } catch (error) {
+      return error;
+    }
   };
 
   return (
@@ -58,7 +78,7 @@ export default function Register() {
           type="button"
           data-testid={ datatest[9] }
           disabled={ validRegister() }
-          onClick={ () => btnLogin() }
+          onClick={ () => callBackBackend(inpEmail, inpPass, inpName) }
         >
           CADASTRAR
         </button>
