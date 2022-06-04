@@ -11,5 +11,6 @@ app.use(cors());
 
 app.use('/login', routes.loginRouter);
 app.use('/register', routes.registerRouter);
+app.use('/customer', routes.customerRouter);
 
 module.exports = app;
