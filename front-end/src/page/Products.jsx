@@ -5,11 +5,11 @@ import datatest from '../util/datatest';
 
 export default function Products() {
   const [products, setProducts] = useState([]);
-
+  console.log(localStorage);
   const getProducts = async () => {
     try {
       const result = await axios.get('http://localhost:3001/customer/products');
-      // console.log('ffffffff', result.data);
+      console.log('ffffffff', result.data);
       setProducts(result.data);
       return result.data;
     } catch (error) {
@@ -27,13 +27,14 @@ export default function Products() {
         <div key={ index }>
           <div>
             <div data-testid={ `${datatest[16]}${product.id}` }>
-              {product.price}
+              {product.price.replace('.', ',')}
             </div>
             <div>
               <img
                 data-testid={ `${datatest[17]}${product.id}` }
                 src={ product.url_image }
-                alt=""
+                alt={ product.name }
+                width={100}
               />
             </div>
           </div>
@@ -52,6 +53,7 @@ export default function Products() {
               <input
                 type="text"
                 data-testid={ `${datatest[20]}${product.id}` }
+                value={ 0 }
               />
               <button
                 type="button"

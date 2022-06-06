@@ -1,10 +1,18 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import datatest from '../util/datatest';
 import deliveryContext from '../context/deliveryContext';
 
 export default function NavBar() {
   const { nameUser } = useContext(deliveryContext);
+  const navigate = useNavigate();
+
+  const exitFunction = () => {
+    const redirectToLogin = '/login';
+    navigate(redirectToLogin);
+    localStorage.clear();
+  };
+
   return (
     <nav>
       <div data-testid={ datatest[11] }>
@@ -20,11 +28,13 @@ export default function NavBar() {
       <div data-testid={ datatest[13] }>
         {nameUser}
       </div>
-      <div data-testid={ datatest[14] }>
-        <Link to="/login">
-          Sair
-        </Link>
-      </div>
+      <button
+        type="button"
+        data-testid={ datatest[14] }
+        onClick={ () => exitFunction() }
+      >
+        Sair
+      </button>
     </nav>
   );
 }

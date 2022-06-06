@@ -27,10 +27,17 @@ export default function Login() {
         password,
       });
       // console.log('result.data: ', result.data);
-      const { role, name } = result.data;
-      setNameUser(name);
+      const { userRole, userName, userEmail, token } = result.data;
+      setNameUser(userName);
 
-      navigate(`/${role}/products`);
+      localStorage.user = JSON.stringify({
+        role: userRole,
+        name: userName,
+        email: userEmail,
+        token: token,
+      })
+
+      navigate(`/${userRole}/products`);
       return result.data;
     } catch (error) {
       setDivDisplay('noDisplay');
