@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useState, useEffect, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import CardProduct from '../components/CardProduct';
 import deliveryContext from '../context/deliveryContext';
 import NavBar from '../components/navbar';
@@ -8,6 +9,7 @@ import datatest from '../util/datatest';
 export default function Products() {
   const [products, setProducts] = useState([]);
   const { totalCart } = useContext(deliveryContext);
+  const navigate = useNavigate();
 
   const getProducts = async () => {
     try {
@@ -31,7 +33,12 @@ export default function Products() {
           <CardProduct product={ element } key={ index } />
         ))
       }
-      <button type="button">
+      <button
+        type="button"
+        onClick={ () => navigate('/customer/checkout') }
+        data-testid="customer_products__button-cart"
+        disabled={ totalCart === 0 }
+      >
         Ver Carrinho: R$:
         <span data-testid={ datatest[21] }>
           { Number(totalCart).toFixed(2).replace('.', ',') }

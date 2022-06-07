@@ -4,6 +4,7 @@ import Login from '../page/Login';
 import Register from '../page/Register';
 import Products from '../page/Products';
 import Orders from '../page/Orders';
+import Checkout from '../page/Checkout';
 
 function Routs() {
   return (
@@ -14,6 +15,7 @@ function Routs() {
         <Route path="/register" element={ <Register /> } />
         <Route path="/customer/products" element={ <Products /> } />
         <Route path="/customer/orders" element={ <Orders /> } />
+        <Route path="/customer/checkout" element={ <Checkout /> } />
       </Routes>
     </BrowserRouter>
   );
