@@ -34,8 +34,8 @@ export default function Login() {
         role: userRole,
         name: userName,
         email: userEmail,
-        token: token,
-      })
+        token,
+      });
 
       navigate(`/${userRole}/products`);
       return result.data;
