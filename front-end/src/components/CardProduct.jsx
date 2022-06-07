@@ -2,29 +2,38 @@ import PropTypes from 'prop-types';
 import React, { useState, useContext } from 'react';
 import deliveryContext from '../context/deliveryContext';
 import datatest from '../util/datatest';
+import { addToCart, removeToCart } from '../util/myCart';
 
 export default function CardProduct({ product }) {
   const [totalValue, setTotalValue] = useState(0);
-  const { totalCart, setTotalCart } = useContext(deliveryContext);
+  const {
+    totalCart,
+    setTotalCart,
+    myProducts,
+    setMyProducts,
+  } = useContext(deliveryContext);
 
   const handleValue = ({ target }) => {
     if (totalValue < 0) return setTotalValue(0);
+
     setTotalValue(Number(target.value));
     setTotalCart((totalCart + (target.value * Number(product.price))));
-    console.log(totalCart);
   };
 
-  const cartNegative = () => {
+  const cartNegative = (param) => {
     if (totalValue !== 0) {
       setTotalValue(totalValue - 1);
       setTotalCart((totalCart - Number(product.price)));
     }
+
+    removeToCart(param, myProducts, setMyProducts);
   };
 
-  const cartPositive = () => {
+  const cartPositive = (param) => {
     setTotalValue(totalValue + 1);
     setTotalCart((totalCart + Number(product.price)));
-    console.log(totalCart);
+
+    addToCart(param, myProducts, setMyProducts);
   };
 
   return (
@@ -51,7 +60,11 @@ export default function CardProduct({ product }) {
           <button
             type="button"
             data-testid={ `${datatest[19]}${product.id}` }
-            onClick={ () => cartNegative() }
+            onClick={ () => cartNegative({
+              id: product.id,
+              item: product.name,
+              value: product.price,
+            }) }
           >
             -
           </button>
@@ -64,7 +77,12 @@ export default function CardProduct({ product }) {
           <button
             type="button"
             data-testid={ `${datatest[18]}${product.id}` }
-            onClick={ () => cartPositive() }
+            onClick={ () => cartPositive({
+              id: product.id,
+              item: product.name,
+              value: product.price,
+              quantity: 1,
+            }) }
           >
             +
           </button>
