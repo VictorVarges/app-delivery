@@ -14,13 +14,13 @@ const ProductsModel = (sequelize, DataTypes) => {
       type: DataTypes.DECIMAL(4, 2),
       allowNull: false,
     },
-    urlImage: {
+    url_image: {
       type: DataTypes.STRING,
     }
   }, {
     timestamps: false,
     tableName: 'products',
-    undescored: true,
+    underscored: true,
   });
 
   return products;

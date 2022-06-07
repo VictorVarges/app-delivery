@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import deliveryContext from '../context/deliveryContext';
 import './login.css';
 import datatest from '../util/datatest';
 
@@ -8,6 +9,7 @@ export default function Login() {
   const [inpLogin, setInpLogin] = useState('');
   const [pass, setPass] = useState('');
   const [divDisplay, setDivDisplay] = useState('display');
+  const { setNameUser } = useContext(deliveryContext);
   const navigate = useNavigate();
 
   const validLogin = () => {
@@ -24,9 +26,19 @@ export default function Login() {
         email,
         password,
       });
-      const { role } = result.data;
+      // console.log('result.data: ', result.data);
+      const { userRole, userName, userEmail, token } = result.data;
+      setNameUser(userName);
 
-      navigate(`/${role}/products`);
+      localStorage.user = JSON.stringify({
+        role: userRole,
+        name: userName,
+        email: userEmail,
+        token,
+      });
+
+      navigate(`/${userRole}/products`);
+      return result.data;
     } catch (error) {
       setDivDisplay('noDisplay');
       console.log(error);
