@@ -39,7 +39,7 @@ export default function Products() {
         data-testid="customer_products__button-cart"
         disabled={ totalCart === 0 }
       >
-        Ver Carrinho: R$:
+        Ver Carrinho R$:
         <span data-testid={ datatest[21] }>
           { Number(totalCart).toFixed(2).replace('.', ',') }
         </span>
