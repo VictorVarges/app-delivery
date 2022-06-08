@@ -22,7 +22,6 @@ module.exports = {
       seller_id: {
         allowNull: false,
         type: Sequelize.INTEGER,
-        unique: true,
         references: {
           model: 'users',
           key: 'id',

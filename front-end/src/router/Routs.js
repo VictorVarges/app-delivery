@@ -5,6 +5,7 @@ import Register from '../page/Register';
 import Products from '../page/Products';
 import Orders from '../page/Orders';
 import Checkout from '../page/Checkout';
+import OrdersDetails from '../page/OrdersDetails';
 
 function Routs() {
   return (
@@ -16,6 +17,7 @@ function Routs() {
         <Route path="/customer/products" element={ <Products /> } />
         <Route path="/customer/orders" element={ <Orders /> } />
         <Route path="/customer/checkout" element={ <Checkout /> } />
+        <Route path="/customer/orders/:id" element={ <OrdersDetails /> } />
       </Routes>
     </BrowserRouter>
   );

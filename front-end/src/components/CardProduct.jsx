@@ -45,7 +45,7 @@ export default function CardProduct({ product }) {
         <div>
           <img
             data-testid={ `${datatest[17]}${product.id}` }
-            src={ product.url_image }
+            src={ product.urlImage }
             alt={ product.name }
             width={ 100 }
           />
@@ -97,6 +97,6 @@ CardProduct.propTypes = {
     id: PropTypes.number,
     name: PropTypes.string,
     price: PropTypes.string,
-    url_image: PropTypes.string,
+    urlImage: PropTypes.string,
   }).isRequired,
 };
