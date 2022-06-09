@@ -35,6 +35,7 @@ const getSaleById = async (req, res) => {
   try {
     const sale = await service.getSaleById(id);
     if (sale === null) return res.status(404).json({ message: 'Not Found' });
+    
     return res.status(200).json(sale);
   } catch (error) {
     console.log(error);

@@ -8,9 +8,10 @@ addToCart = (param, myProducts, setMyProducts) => {
       }
       return el;
     });
-    setMyProducts([...resultTwo]);
+
+    setMyProducts(resultTwo);
   } else {
-    setMyProducts((prev) => ([...prev, param]));
+    setMyProducts((prev) => [...prev, param]);
   }
 };
 
@@ -19,7 +20,7 @@ removeToCart = (param, myProducts, setMyProducts) => {
     const resultOne = myProducts.find((el) => el.id === param.id);
 
     if (resultOne) {
-      const resultTwo = myProducts.map((el, index) => {
+      const resultTwo = myProducts.map((el) => {
         if (el.id === resultOne.id) {
           if (el.quantity <= 1) {
             return undefined;

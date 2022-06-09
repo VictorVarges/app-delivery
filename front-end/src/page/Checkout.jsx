@@ -51,29 +51,27 @@ export default function Checkout() {
       setTotalCart(0);
 
       navigate(`/customer/orders/${id}`);
-      console.log('-->', myOrder.data);
+
       return myOrder;
     } catch (error) {
-      console.log('deu ruim');
       console.error(error);
     }
-  };
-
-  const getSellers = async () => {
-    const seller = await axios.get('http://localhost:3001/users');
-    const mySeler = seller.data.filter((el) => el.role === 'seller');
-
-    setSellers([...mySeler]);
-
-    return sellers;
   };
 
   const selectSeller = (target) => {
     setMySeller(target.value);
   };
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => getSellers(), []);
+  useEffect(() => {
+    const getSellers = async () => {
+      const seller = await axios.get('http://localhost:3001/users');
+      const mySeler = seller.data.filter((el) => el.role === 'seller');
+
+      setSellers([...mySeler]);
+    };
+
+    getSellers();
+  }, []);
 
   return (
     <>
