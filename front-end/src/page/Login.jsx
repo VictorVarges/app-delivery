@@ -37,6 +37,9 @@ export default function Login() {
         token,
       });
 
+      if (userRole === 'seller') {
+        return navigate(`/${userRole}/orders`);
+      }
       navigate(`/${userRole}/products`);
       return result.data;
     } catch (error) {
