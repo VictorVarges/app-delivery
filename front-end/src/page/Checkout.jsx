@@ -42,17 +42,18 @@ export default function Checkout() {
         myAdress,
         myAdressNumber,
         totalCart,
+        myProducts,
       }, {
         headers: {
           Authorization: user.token,
         },
       });
-      const { id } = myOrder.data;
+      const { id } = myOrder.data.result;
       setMyProducts([]);
       setTotalCart(0);
 
       navigate(`/customer/orders/${id}`);
-
+      console.log(myOrder.data);
       return myOrder;
     } catch (error) {
       console.error(error);
