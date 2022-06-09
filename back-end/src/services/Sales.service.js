@@ -29,7 +29,20 @@ const createSale = async (sale) => {
   return result;
 };
 
+const getSaleById = async (id) => {
+  console.log('log id', id);
+
+  const result = await Sales.findAll({
+    include: [{ model: Users, as: 'user' }, { model: Users, as: 'seller' }],
+  });
+  
+  console.log('log result', result);
+   
+  return result;
+};
+
 module.exports = { 
   getSales,
   createSale,
+  getSaleById,
 };

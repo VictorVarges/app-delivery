@@ -28,11 +28,6 @@ const UsersModel = (sequelize, DataTypes) => {
     underscored: true,
   });
 
-  UsersModel.associate = (models) => {
-    UsersModel.hasMany(models.SalesModel, { forengeKey: 'user_id', as: 'userId' });
-    UsersModel.hasMany(models.SalesModel, { forengeKey: 'seller_id', as: 'sellerId' });
-  }
-
   return users;
 };
 
