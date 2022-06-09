@@ -50,21 +50,20 @@ export default function Checkout() {
     }
   };
 
-  const getSellers = async () => {
-    const seller = await axios.get('http://localhost:3001/users');
-    const mySeler = seller.data.filter((el) => el.role === 'seller');
-
-    setSellers([...mySeler]);
-
-    return sellers;
-  };
-
   const selectSeller = (target) => {
     setMySeller(target.value);
   };
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => getSellers(), []);
+  useEffect(() => {
+    const getSellers = async () => {
+      const seller = await axios.get('http://localhost:3001/users');
+      const mySeler = seller.data.filter((el) => el.role === 'seller');
+
+      setSellers([...mySeler]);
+    };
+
+    getSellers();
+  }, []);
 
   return (
     <>
