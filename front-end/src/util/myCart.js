@@ -22,16 +22,14 @@ removeToCart = (param, myProducts, setMyProducts) => {
       const resultTwo = myProducts.map((el, index) => {
         if (el.id === resultOne.id) {
           if (el.quantity <= 1) {
-            const result = myProducts.splice(index, 1);
-
-            return result;
+            return undefined;
           }
           el.quantity -= 1;
         }
         return el;
       });
 
-      setMyProducts([...resultTwo]);
+      setMyProducts([...resultTwo.filter((el) => el)]);
     }
   } catch (error) {
     console.error(error);
