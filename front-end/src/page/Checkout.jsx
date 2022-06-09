@@ -20,6 +20,16 @@ export default function Checkout() {
 
   const deleteItem = (el) => {
     const newArray = myProducts.filter((element) => (element.id !== el.id));
+    if (newArray.length === 0) setTotalCart(0);
+    const result = newArray.map((element) => {
+      const subTotal = element.quantity * element.value;
+
+      return subTotal;
+    });
+
+    const totalCartValue = result.reduce((acc, crr) => acc + crr);
+
+    setTotalCart(totalCartValue);
     setMyProducts(newArray);
   };
 
@@ -42,10 +52,9 @@ export default function Checkout() {
       setTotalCart(0);
 
       navigate(`/customer/orders/${id}`);
-      console.log('-->', myOrder.data);
+
       return myOrder;
     } catch (error) {
-      console.log('deu ruim');
       console.error(error);
     }
   };

@@ -8,9 +8,10 @@ addToCart = (param, myProducts, setMyProducts) => {
       }
       return el;
     });
-    setMyProducts([...resultTwo]);
+
+    setMyProducts(resultTwo);
   } else {
-    setMyProducts((prev) => ([...prev, param]));
+    setMyProducts((prev) => [...prev, param]);
   }
 };
 
@@ -19,19 +20,17 @@ removeToCart = (param, myProducts, setMyProducts) => {
     const resultOne = myProducts.find((el) => el.id === param.id);
 
     if (resultOne) {
-      const resultTwo = myProducts.map((el, index) => {
+      const resultTwo = myProducts.map((el) => {
         if (el.id === resultOne.id) {
           if (el.quantity <= 1) {
-            const result = myProducts.splice(index, 1);
-
-            return result;
+            return undefined;
           }
           el.quantity -= 1;
         }
         return el;
       });
 
-      setMyProducts([...resultTwo]);
+      setMyProducts([...resultTwo.filter((el) => el)]);
     }
   } catch (error) {
     console.error(error);
