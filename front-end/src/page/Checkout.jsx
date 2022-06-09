@@ -32,7 +32,6 @@ export default function Checkout() {
     setTotalCart(totalCartValue);
     setMyProducts(newArray);
   };
-
   const checkoutOrder = async () => {
     const user = JSON.parse(localStorage.getItem('user'));
     try {

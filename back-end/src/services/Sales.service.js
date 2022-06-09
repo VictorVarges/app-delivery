@@ -35,16 +35,12 @@ const createSale = async (sale, products) => {
 };
 
 const getSaleById = async (id) => {
-  console.log('log id', id);
-
-  const result = await Sales.findAll({
-    include: [{ model: Users, as: 'user' }, { model: Users, as: 'seller' }],
+  const result = await Sales.findOne({ where: { id },
+      includes: [{ model: SalesProducts, as: 'salesP', through: { attributes: [] } }],
   });
-  
-  console.log('log result', result);
    
   return result;
-};
+  };
 
 module.exports = { 
   getSales,
