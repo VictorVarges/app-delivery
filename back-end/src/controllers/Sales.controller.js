@@ -13,14 +13,16 @@ const getSales = async (_req, res) => {
 };
 
 const createSales = async (req, res) => {
-  const { user: { email, name, role }, mySeller, myAdress, myAdressNumber, totalCart } = req.body;
+  const {
+    user: { email, name, role }, mySeller, myAdress, myAdressNumber, totalCart, myProducts,
+  } = req.body;
 
   const mySale = {
     email, name, role, mySeller, myAdress, myAdressNumber, totalCart,
   };
 
   try {
-    const sale = await service.createSale(mySale);
+    const sale = await service.createSale(mySale, myProducts);
 
     if (!sale) return res.status(400).json({ message: 'Bad Request' });
 
