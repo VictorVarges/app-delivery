@@ -30,7 +30,20 @@ const createSales = async (req, res) => {
   }
 };
 
+const getSaleById = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const sale = await service.getSaleById(id);
+    if (sale === null) return res.status(404).json({ message: 'Not Found' });
+    return res.status(200).json(sale);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: error.message });
+  }
+};
+
 module.exports = {
   getSales,
   createSales,
+  getSaleById,
 };

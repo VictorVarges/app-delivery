@@ -29,7 +29,16 @@ const createSale = async (sale) => {
   return result;
 };
 
+const getSaleById = async (id) => {
+  const result = await Sales.findOne({ where: { id },
+      includes: [{ model: SalesProducts, as: 'salesP', through: { attributes: [] } }],
+  });
+   
+  return result;
+  };
+
 module.exports = { 
   getSales,
   createSale,
+  getSaleById
 };
