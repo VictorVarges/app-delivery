@@ -6,27 +6,27 @@ const SalesModel = (sequelize, DataTypes) => {
       autoIncrement: true,
       allowNull: false,
     },
-    user_id: {
+    userId: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    seller_id: {
+    sellerId: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    total_price: {
+    totalPrice: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    delivery_address: {
+    deliveryAddress: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    delivery_number: {
+    deliveryNumber: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    sale_date: {
+    saleDate: {
       type: DataTypes.DATE,
       allowNull: false,
     },
@@ -39,6 +39,11 @@ const SalesModel = (sequelize, DataTypes) => {
     timestamps: false,
     tableName: 'sales',
   });
+
+  sales.associate = (models) => {
+    sales.belongsTo(models.Users, { as: 'user', foreignKey: 'user_id' })
+    sales.belongsTo(models.Users, { as: 'seller', foreignKey: 'seller_id' })
+  }
 
   return sales;
 };

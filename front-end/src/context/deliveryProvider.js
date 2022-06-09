@@ -5,12 +5,15 @@ import deliveryContext from './deliveryContext';
 export default function Provider({ children }) {
   const [nameUser, setNameUser] = useState('');
   const [totalCart, setTotalCart] = useState(0);
+  const [myProducts, setMyProducts] = useState([]);
 
   const myContext = {
     nameUser,
     setNameUser,
     totalCart,
     setTotalCart,
+    myProducts,
+    setMyProducts,
   };
 
   return (

@@ -10,24 +10,19 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       user_id: {
-        allowNull: false,
         type: Sequelize.INTEGER,
         references: {
           model: 'users',
           key: 'id',
         },
-        onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
       },
       seller_id: {
-        allowNull: false,
         type: Sequelize.INTEGER,
-        unique: true,
         references: {
           model: 'users',
           key: 'id',
         },
-        onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
       },
       total_price: {
@@ -47,6 +42,7 @@ module.exports = {
         type: Sequelize.DATE,
       },
       status: {
+        defaultValue: 'Pendente',
         allowNull: false,
         type: Sequelize.STRING,
       },
