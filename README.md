@@ -131,5 +131,5 @@ São os scripts da raiz do projeto (`./package.json`) e não das aplicações in
 
 ##
 <span >
-  <a href="https://www.linkedin.com/in/victorvarges/" target="_blank"><img width="110em" src="https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white"></a>
+  <a href="https://www.linkedin.com/in/victor-varges/" target="_blank"><img width="110em" src="https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white"></a>
 </span>
